@@ -141,15 +141,6 @@ extracted by quantum routines.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QPCA.decomposition.</span></span><span class="sig-name descname"><span class="pre">QPCA</span></span><a class="headerlink" href="#QPCA.decomposition.QPCA" title="Permalink to this definition"></a></dt>
 <dd><p>Quantum Principal component analysis (QPCA).
 Implementation of the QPCA algorithm proposed in “A Low Complexity Quantum Principal Component Analysis Algorithm” paper.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_matrix</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Input hermitian matrix on which you want to apply QPCA, where <cite>n_samples</cite> is the number of samples
-and <cite>n_features</cite> is the number of features.</p></li>
-<li><p><strong>resolution</strong> (<em>int value</em>) – Number of qubits used for the phase estimation process to encode the eigenvalues.</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="QPCA.decomposition.QPCA.input_matrix_trace">
 <span class="sig-name descname"><span class="pre">input_matrix_trace</span></span><a class="headerlink" href="#QPCA.decomposition.QPCA.input_matrix_trace" title="Permalink to this definition"></a></dt>
@@ -180,6 +171,17 @@ and <cite>n_features</cite> is the number of features.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>QuantumCircuit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="QPCA.decomposition.QPCA.resolution">
+<span class="sig-name descname"><span class="pre">resolution</span></span><a class="headerlink" href="#QPCA.decomposition.QPCA.resolution" title="Permalink to this definition"></a></dt>
+<dd><p>Number of qubits used for the phase estimation process to encode the eigenvalues.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int value</p>
 </dd>
 </dl>
 </dd></dl>
