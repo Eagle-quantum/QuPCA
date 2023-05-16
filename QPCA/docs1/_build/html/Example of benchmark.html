@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example &mdash; Qpca  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Example of benchmark" href="Example_benchmark.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Qpca
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">QPCA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="QPCA.html">decomposition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-QPCA.decomposition">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA"><code class="docutils literal notranslate"><span class="pre">QPCA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QUtilities.html">quantumUtilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="QUtilities.html#module-QPCA.quantumUtilities">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="QUtilities.html#QPCA.quantumUtilities.from_binary_tree_to_qcircuit"><code class="docutils literal notranslate"><span class="pre">from_binary_tree_to_qcircuit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUtilities.html#QPCA.quantumUtilities.state_vector_tomography"><code class="docutils literal notranslate"><span class="pre">state_vector_tomography()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="QUtilities.html#QPCA.quantumUtilities.thetas_computation"><code class="docutils literal notranslate"><span class="pre">thetas_computation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Q_preprocessing.html">preprocessingUtilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-QPCA.preprocessingUtilities">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Q_preprocessing.html#QPCA.preprocessingUtilities.generate_matrix"><code class="docutils literal notranslate"><span class="pre">generate_matrix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Q_postprocessing.html">postprocessingUtilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Q_postprocessing.html#module-QPCA.postprocessingUtilities">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Q_postprocessing.html#QPCA.postprocessingUtilities.general_postprocessing"><code class="docutils literal notranslate"><span class="pre">general_postprocessing()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">benchmark</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-QPCA.benchmark">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvalues_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvalues_benchmarking()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvectors_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvectors_benchmarking()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.error_benchmark"><code class="docutils literal notranslate"><span class="pre">error_benchmark()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.sign_reconstruction_benchmarking"><code class="docutils literal notranslate"><span class="pre">sign_reconstruction_benchmarking()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example_modules.html">Example of QPCA usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Example%20of%20QPCA%20usage.html">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example_tomography_modules.html">Example of state tomography usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Example%20of%20state%20tomography%20usage.html">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="Example_benchmark.html">Example of benchmark</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eigenvectors-benchmark">Eigenvectors benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eigenvalues-benchmark">Eigenvalues benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eigenvectors-reconstruction-error-benchmark">Eigenvectors reconstruction error benchmark</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Qpca</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="Example_benchmark.html">Example of benchmark</a></li>
+      <li class="breadcrumb-item active">Example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Example of benchmark.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example">
+<h1>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h1>
+<p>In the <a class="reference internal" href="benchmark.html#module-QPCA.benchmark" title="QPCA.benchmark"><code class="xref py py-mod docutils literal notranslate"><span class="pre">benchmark</span></code></a> module, you will find 4 methods to benchmark the execution of Qpca algorithm.
+Here below there are reported some possible usage of the methods of benchmarking.</p>
+<p>First, a seed is set for the reproducibility of the experiments. Then, the resolution is set to 8 qubits and
+the matrix that will be considered is a 4x4 matrix with a custom list of eigenvalues. The number of measures for
+the eigenvectors reconstruction is set to 1000000.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QPCA.decomposition.Qpca</span> <span class="kn">import</span> <span class="n">QPCA</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">QPCA.preprocessingUtilities.preprocessing_matrix_utilities</span> <span class="kn">import</span> <span class="n">generate_matrix</span>
+
+<span class="n">seed</span><span class="o">=</span><span class="mi">4747</span>
+<span class="n">resolutions</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">matrix_dimension</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">eigenvalues_list</span><span class="o">=</span><span class="p">[</span><span class="mf">0.65</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.04</span><span class="p">]</span>
+<span class="n">input_matrix</span><span class="o">=</span><span class="n">generate_matrix</span><span class="p">(</span><span class="n">matrix_dimension</span><span class="o">=</span><span class="n">matrix_dimension</span><span class="p">,</span><span class="n">replicate_paper</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span><span class="n">eigenvalues_list</span><span class="o">=</span><span class="n">eigenvalues_list</span><span class="p">)</span>
+<span class="n">shots_numbers</span><span class="o">=</span><span class="p">[</span><span class="mi">1000000</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then, a Qpca object is fitted using the generated input matrix and the chosen resolution. Finally, using <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.eigenvectors_reconstruction" title="QPCA.decomposition.QPCA.eigenvectors_reconstruction"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eigenvectors_reconstruction()</span></code></a>, you are able to reconstruct the eigenvalues/eigenvectors.
+The first reference example concerns the accuracy of reconstructing eigenvectors using <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.spectral_benchmarking" title="QPCA.decomposition.QPCA.spectral_benchmarking"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spectral_benchmarking()</span></code></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">resolution</span> <span class="ow">in</span> <span class="n">resolutions</span><span class="p">:</span>
+   <span class="n">qpca</span><span class="o">=</span><span class="n">QPCA</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_matrix</span><span class="p">,</span><span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shots_numbers</span><span class="p">:</span>
+      <span class="n">reconstructed_eigenvalues</span><span class="p">,</span><span class="n">reconstructed_eigenvectors</span><span class="o">=</span><span class="n">qpca</span><span class="o">.</span><span class="n">eigenvectors_reconstruction</span><span class="p">(</span><span class="n">n_shots</span><span class="o">=</span><span class="n">s</span><span class="p">,</span><span class="n">n_repetitions</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">eig_evec_tuple</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">qpca</span><span class="o">.</span><span class="n">spectral_benchmarking</span><span class="p">(</span><span class="n">eigenvector_benchmarking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sign_benchmarking</span><span class="o">=</span><span class="kc">False</span> <span class="p">,</span><span class="n">eigenvalues_benchmarching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">print_distances</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">only_first_eigenvectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                     <span class="n">plot_delta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">distance_type</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span><span class="n">error_with_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">hide_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">print_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="eigenvectors-benchmark">
+<h2>Eigenvectors benchmark<a class="headerlink" href="#eigenvectors-benchmark" title="Permalink to this heading"></a></h2>
+<p>Setting the <code class="xref py py-obj docutils literal notranslate"><span class="pre">eigenvector_benchmarking</span></code> parameter to True, you will obtain a plot like the following one. You can see the eigenvectors that you are able to reconstruct and the values of the reconstructed
+eigenvector (stars) compared to the original ones (circles). In the legend, it is also reported the l2-error distance between the reconstructed and original eigenvector.</p>
+<img alt="Images/benchmark1.png" src="Images/benchmark1.png" />
+</section>
+<section id="eigenvalues-benchmark">
+<h2>Eigenvalues benchmark<a class="headerlink" href="#eigenvalues-benchmark" title="Permalink to this heading"></a></h2>
+<p>You can also benchmark the reconstructed eigenvalues by setting the <code class="xref py py-obj docutils literal notranslate"><span class="pre">eigenvalues_benchmarching</span></code> to True. With this benchmark, a plot showing the reconstructed eigenvalues (red circle) and the
+original ones (black crosses) is shown. If the <code class="xref py py-obj docutils literal notranslate"><span class="pre">print_error</span></code> parameter is set to True, a table showing the absolute error between reconstructed and original eigenvalues it is also reported.</p>
+<img alt="Images/benchmark2.png" src="Images/benchmark2.png" />
+</section>
+<section id="eigenvectors-reconstruction-error-benchmark">
+<h2>Eigenvectors reconstruction error benchmark<a class="headerlink" href="#eigenvectors-reconstruction-error-benchmark" title="Permalink to this heading"></a></h2>
+<p>Using the <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.error_benchmarking" title="QPCA.decomposition.QPCA.error_benchmarking"><code class="xref py py-meth docutils literal notranslate"><span class="pre">error_benchmarking()</span></code></a> method, you can visualize better the trend of the reconstruction error for each eigenvectors as the number of measures and number of
+resolution qubits increase. As before, once the number of measures and resolution qubits are chosen, you can perform the fit and eigenvectors reconstruction procedures.
+Pay attention: it is important to save the results of the benchmark into specific dictionary, as in the code below. This is because the <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.error_benchmarking" title="QPCA.decomposition.QPCA.error_benchmarking"><code class="xref py py-meth docutils literal notranslate"><span class="pre">error_benchmarking()</span></code></a> function
+expects dictionaries as parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shots_numbers</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1500</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">100000</span><span class="p">,</span><span class="mi">500000</span><span class="p">,</span><span class="mi">1000000</span><span class="p">]</span>
+<span class="n">resolutions</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">resolution_dictionary</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">resolution_dictionary_shots</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">resolution</span> <span class="ow">in</span> <span class="n">resolutions</span><span class="p">:</span>
+   <span class="n">error_list</span><span class="o">=</span><span class="p">[]</span>
+   <span class="n">delta_list</span><span class="o">=</span><span class="p">[]</span>
+   <span class="n">shots_dict</span><span class="o">=</span><span class="p">{}</span>
+   <span class="n">qpca</span><span class="o">=</span><span class="n">QPCA</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_matrix</span><span class="p">,</span><span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shots_numbers</span><span class="p">:</span>
+
+      <span class="n">reconstructed_eigenvalues</span><span class="p">,</span><span class="n">reconstructed_eigenvectors</span><span class="o">=</span><span class="n">qpca</span><span class="o">.</span><span class="n">eigenvectors_reconstruction</span><span class="p">(</span><span class="n">n_shots</span><span class="o">=</span><span class="n">s</span><span class="p">,</span><span class="n">n_repetitions</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">eig_evec_tuple</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="n">qpca</span><span class="o">.</span><span class="n">spectral_benchmarking</span><span class="p">(</span><span class="n">eigenvector_benchmarking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sign_benchmarking</span><span class="o">=</span><span class="kc">False</span> <span class="p">,</span><span class="n">eigenvalues_benchmarching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">print_distances</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">only_first_eigenvectors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                      <span class="n">plot_delta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">distance_type</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span><span class="n">error_with_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">hide_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">print_error</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">eig_evec_tuple</span><span class="p">:</span>
+            <span class="n">shots_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+      <span class="n">error_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eig_evec_tuple</span><span class="p">)</span>
+      <span class="n">delta_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span>
+
+   <span class="n">resolution_dictionary_shots</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">resolution</span><span class="p">:</span><span class="n">shots_dict</span><span class="p">})</span>
+   <span class="n">resolution_dictionary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">resolution</span><span class="p">:</span><span class="n">error_list</span><span class="p">})</span>
+
+<span class="n">qpca</span><span class="o">.</span><span class="n">error_benchmarking</span><span class="p">(</span><span class="n">errors_dict</span><span class="o">=</span><span class="n">resolution_dictionary</span><span class="p">,</span><span class="n">shots_dict</span><span class="o">=</span><span class="n">resolution_dictionary_shots</span><span class="p">,</span><span class="n">distance_type</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="Images/benchmark3.png" src="Images/benchmark3.png" />
+<p>With these plots, you can observe the trend of the errors as the number of measures and resolution qubits increases for each eigenvectors.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Tommaso.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

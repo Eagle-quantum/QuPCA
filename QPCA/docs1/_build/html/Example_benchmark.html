@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>postprocessingUtilities &mdash; Qpca  documentation</title>
+  <title>Example of benchmark &mdash; Qpca  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,8 +17,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="benchmark" href="benchmark.html" />
-    <link rel="prev" title="preprocessingUtilities" href="Q_preprocessing.html" /> 
+    <link rel="next" title="Example" href="Example%20of%20benchmark.html" />
+    <link rel="prev" title="Example" href="Example%20of%20state%20tomography%20usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">QPCA</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">QPCA</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="QPCA.html">decomposition</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-QPCA.decomposition">Module contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA"><code class="docutils literal notranslate"><span class="pre">QPCA</span></code></a></li>
@@ -66,9 +66,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">postprocessingUtilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-QPCA.postprocessingUtilities">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#QPCA.postprocessingUtilities.general_postprocessing"><code class="docutils literal notranslate"><span class="pre">general_postprocessing()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="Q_postprocessing.html">postprocessingUtilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Q_postprocessing.html#module-QPCA.postprocessingUtilities">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Q_postprocessing.html#QPCA.postprocessingUtilities.general_postprocessing"><code class="docutils literal notranslate"><span class="pre">general_postprocessing()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -93,7 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Example%20of%20state%20tomography%20usage.html">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Example_benchmark.html">Example of benchmark</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example of benchmark</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Example%20of%20benchmark.html">Example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Example%20of%20benchmark.html#eigenvectors-benchmark">Eigenvectors benchmark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Example%20of%20benchmark.html#eigenvalues-benchmark">Eigenvalues benchmark</a></li>
@@ -118,10 +118,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">QPCA</a></li>
-      <li class="breadcrumb-item active">postprocessingUtilities</li>
+      <li class="breadcrumb-item active">Example of benchmark</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/Q_postprocessing.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Example_benchmark.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -129,37 +128,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="postprocessingutilities">
-<h1>postprocessingUtilities<a class="headerlink" href="#postprocessingutilities" title="Permalink to this heading"></a></h1>
-<p>This is a postprocessing module, where the methods are used by the QPCA class to reconstruct the eigenvectors.</p>
-<section id="module-QPCA.postprocessingUtilities">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-QPCA.postprocessingUtilities" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="QPCA.postprocessingUtilities.general_postprocessing">
-<span class="sig-prename descclassname"><span class="pre">QPCA.postprocessingUtilities.</span></span><span class="sig-name descname"><span class="pre">general_postprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statevector_dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_shots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_peaks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.postprocessingUtilities.general_postprocessing" title="Permalink to this definition"></a></dt>
-<dd><p>Eigenvectors reconstruction process from the reconstructed statevector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_matrix</strong> (<em>array-like</em>) – Hermitian input matrix.</p></li>
-<li><p><strong>statevector_dictionary</strong> (<em>dict-like.</em>) – Dictionary where the keys represent the eigenvalues/eigenvectors encoded in the qubits and the values represent the reconstructed statevector’s values.</p></li>
-<li><p><strong>resolution</strong> (<em>int value</em>) – Number of qubits used in the phase estimation process to represent the eigenvalues.</p></li>
-<li><p><strong>n_shots</strong> (<em>int value</em>) – Number of measures performed in the tomography process.</p></li>
-<li><p><strong>plot_peaks</strong> (<em>bool value</em>) – If True, it returns a plot of the peaks which correspond to the eigenvalues finded by the phase estimation procedure.</p></li>
+  <section id="example-of-benchmark">
+<h1>Example of benchmark<a class="headerlink" href="#example-of-benchmark" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Example%20of%20benchmark.html">Example</a></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>eigenvalue_eigenvector_tuples</strong> (<em>array-like</em>) – List of tuples containing as first value the reconstructed eigenvalue and as second value the reconstructed eigenvector (sorted from the highest to the lowest eigenvalues).</p></li>
-<li><p><strong>mean_threshold</strong> (<em>array-like</em>) – This array contains the mean between the left and right peaks vertical distance to its neighbouring samples. It is useful for the benchmark process to cut out the bad eigenvalues.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-</dd></dl>
-
-</section>
+</div>
 </section>
 
 
