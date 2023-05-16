@@ -140,9 +140,6 @@ class QPCA():
         ----------
         """
         
-        
-        matrix_dimension=len(input_matrix)
-        
         self.input_matrix_trace=np.trace(input_matrix)
         #normalize the input matrix by its trace to obtain eigenvalues between 0 and 1
         self.input_matrix=input_matrix/np.trace(input_matrix)
