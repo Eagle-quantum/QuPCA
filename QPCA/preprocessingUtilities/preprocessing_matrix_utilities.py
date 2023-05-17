@@ -65,5 +65,3 @@ def generate_matrix(matrix_dimension,eigenvalues_list=None,replicate_paper=True,
         return input_matrix
     
     
-def next_power_of_2(x):
-    return 1 if x == 0 else 2**math.ceil(math.log2(x))
