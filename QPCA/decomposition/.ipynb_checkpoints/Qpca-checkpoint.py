@@ -6,7 +6,7 @@ from qiskit.circuit.library import PhaseEstimation
 import math
 from ..quantumUtilities.quantum_utilities import thetas_computation,from_binary_tree_to_qcircuit,state_vector_tomography
 from ..postprocessingUtilities.postprocessing_eig_reconstruction import general_postprocessing
-from ..preprocessingUtilities.preprocessing_matrix_utilities import next_power_of_2
+from qiskit.circuit.library.data_preparation.state_preparation import StatePreparation
 from ..benchmark.benchmark import eigenvectors_benchmarking,eigenvalues_benchmarking,error_benchmark,sign_reconstruction_benchmarking,distance_function_wrapper
 from scipy.spatial import distance
 #warnings.filterwarnings("ignore")
@@ -52,13 +52,17 @@ class QPCA():
     
     """      
     
-    def __generate_qram_circuit(self):
+    def __generate_qram_circuit(self, optimized_qram):
         
         """
         Generate qram circuit.
 
         Parameters
         ----------
+        
+        optimized_qram: bool flag, default=True
+                    If True, it returns an optimized version of the preprocessing circuit. Otherwise, a custom implementation of a Qram is returned.
+                    Unless necessary, it is recommended to keep the optimized version of this circuit.
 
         Returns
         ----------
@@ -73,9 +77,23 @@ class QPCA():
         
         input_matrix=self.input_matrix
         
-        thetas, all_combinations=thetas_computation(input_matrix=input_matrix)
-        
-        qc=from_binary_tree_to_qcircuit(input_matrix,thetas, all_combinations)
+        if optimized_qram:
+            
+            flattened_matrix = input_matrix.flatten()
+            norm = np.linalg.norm(flattened_matrix)
+            state_preparation = StatePreparation(flattened_matrix / norm)
+
+            num_qubits=int(np.ceil(np.log2(len(flattened_matrix))))
+
+            qc = QuantumCircuit(num_qubits)
+
+            qc.append(state_preparation, [i for i in range(num_qubits-1,-1,-1)])
+            
+        else:
+            
+            thetas, all_combinations=thetas_computation(input_matrix=input_matrix)
+
+            qc=from_binary_tree_to_qcircuit(input_matrix,thetas, all_combinations)
         
         self.qram_circuit=qc
         
@@ -109,7 +127,7 @@ class QPCA():
         return q_circuit
     
     
-    def fit(self, input_matrix, resolution, plot_qram=False,plot_pe_circuit=False):
+    def fit(self, input_matrix, resolution, optimized_qram=True, plot_qram=False,plot_pe_circuit=False):
         
         """
         Fit Qpca model. This method generates the encoding matrix circuit and apply the phase estimation operator.
@@ -123,6 +141,10 @@ class QPCA():
                     
         resolution: int value
                     Number of qubits used for the phase estimation process to encode the eigenvalues.
+                    
+        optimized_qram: bool flag, default=True
+                    If True, it returns an optimized version of the preprocessing circuit. Otherwise, a custom implementation of a Qram is returned.
+                    Unless necessary, it is recommended to keep the optimized version of this circuit.
                     
         plot_qram: bool value, default=False
                     If True, it returns a plot of the Qram circuit that encodes the input matrix.
@@ -165,7 +187,7 @@ class QPCA():
         self.true_input_matrix=true_input_matrix/np.trace(true_input_matrix)
         self.resolution=resolution
         
-        qc=self.__generate_qram_circuit()
+        qc=self.__generate_qram_circuit(optimized_qram=optimized_qram)
         if plot_qram:
             display(qc.draw('mpl'))
         
