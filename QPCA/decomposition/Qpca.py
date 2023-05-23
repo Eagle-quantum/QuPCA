@@ -198,7 +198,7 @@ class QPCA():
         return self
 
 
-    def eigenvectors_reconstruction(self,n_shots=50000,n_repetitions=1,plot_peaks=False):
+    def eigenvectors_reconstruction(self,n_shots=50000,n_repetitions=1,plot_peaks=False, eigenvalue_threshold=None, abs_tolerance=1e-04):
         
         """ Method that reconstructs the eigenvalues/eigenvectors once performed Phase Estimation. 
 
@@ -213,6 +213,12 @@ class QPCA():
                 
         plot_peaks: bool value, defualt=False
                         If True, it returns a plot of the peaks which correspond to the eigenvalues finded by the phase estimation procedure.
+                        
+        eigenvalue_threshold: float value, default=None
+                        It acts as a threshold that cut out the eigenvalues (and the corrseponding eigenvectors) that are smaller than this value.
+        
+        abs_tolerance: float value, default=1e-04
+                        Absolute tolerance parameter used to cut out the eigenvalues estimated badly due to insufficient resolution.
         
         Returns
         ----------
@@ -250,8 +256,9 @@ class QPCA():
             return statevector_dictionary
         
         statevector_dictionary=wrapper_state_vector_tomography(quantum_circuit=self.total_circuit,n_shots=n_shots)
-        eigenvalue_eigenvector_tuple,mean_threshold=general_postprocessing(input_matrix=self.input_matrix,statevector_dictionary=statevector_dictionary,
-                                                                           resolution=self.resolution,n_shots=self.n_shots,plot_peaks=plot_peaks)
+        eigenvalue_eigenvector_tuple, mean_threshold=general_postprocessing(input_matrix=self.input_matrix,statevector_dictionary=statevector_dictionary,
+                                                                           resolution=self.resolution,n_shots=self.n_shots,plot_peaks=plot_peaks,
+                                                                           eigenvalue_threshold=eigenvalue_threshold,abs_tolerance=abs_tolerance)
         
         
         self.reconstructed_eigenvalue_eigenvector_tuple=eigenvalue_eigenvector_tuple
