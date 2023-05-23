@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example &mdash; Qpca  documentation</title>
@@ -44,10 +44,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">QPCA</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="QPCA.html">decomposition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-QPCA.decomposition">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA"><code class="docutils literal notranslate"><span class="pre">QPCA</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="QUtilities.html">quantumUtilities</a><ul>
@@ -60,10 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Q_preprocessing.html">preprocessingUtilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-QPCA.preprocessingUtilities">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Q_preprocessing.html#QPCA.preprocessingUtilities.generate_matrix"><code class="docutils literal notranslate"><span class="pre">generate_matrix()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Q_postprocessing.html">postprocessingUtilities</a><ul>
@@ -74,13 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">benchmark</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-QPCA.benchmark">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvalues_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvalues_benchmarking()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvectors_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvectors_benchmarking()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.error_benchmark"><code class="docutils literal notranslate"><span class="pre">error_benchmark()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.sign_reconstruction_benchmarking"><code class="docutils literal notranslate"><span class="pre">sign_reconstruction_benchmarking()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -132,7 +120,7 @@
   <section id="example">
 <h1>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h1>
 <p>First, you have to import the necessary modules from the package and then you can generate a random Hermitian
-matrix using <a class="reference internal" href="Q_preprocessing.html#QPCA.preprocessingUtilities.generate_matrix" title="QPCA.preprocessingUtilities.generate_matrix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_matrix()</span></code></a> method provided in the package. You can
+matrix using <code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_matrix()</span></code> method provided in the package. You can
 set the matrix dimension and a seed for the reproducibility of the execution.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/**</span>
  <span class="o">*</span>
@@ -183,8 +171,8 @@ Notice that the number of qubits used for the phase estimation in this case are 
 parameter to encode the eigenvalues and 1 to encode the eigenvectors. In general, you will have the qubits specified
 in the resolution parameter plus half of the qubits used for the matrix encoding.</p>
 <img alt="_images/pe.png" src="_images/pe.png" />
-<p>The core part of this library is the eigenvector reconstruction that you can perform using <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.eigenvectors_reconstruction" title="QPCA.decomposition.QPCA.eigenvectors_reconstruction"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eigenvectors_reconstruction()</span></code></a>. You can
-specify, as input parameters, <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.n_shots" title="QPCA.decomposition.QPCA.n_shots"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_shots</span></code></a> which is the number of measure that you
+<p>The core part of this library is the eigenvector reconstruction that you can perform using <code class="xref py py-meth docutils literal notranslate"><span class="pre">eigenvectors_reconstruction()</span></code>. You can
+specify, as input parameters, <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_shots</span></code> which is the number of measure that you
 want to perform in the state vector tomography, <code class="xref py py-obj docutils literal notranslate"><span class="pre">n_repetitions</span></code> which is the
 number of times that you want to repeat the tomography process, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_peaks</span></code>
 if you want to plot the output of the phase estimation which represent the most valuable approximated eigenvalues.</p>
@@ -202,7 +190,7 @@ one below, where you can see the peaks that represent the eigenvalues that phase
 As you can see, here the two peaks are 0.92 and 0.07 which are the two eigenvalues that you are able to
 estimate with the resolution and the number of shots that you provide.</p>
 <img alt="_images/peaks.png" src="_images/peaks.png" />
-<p>Finally, you can reconstruct the original input matrix using <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.quantum_input_matrix_reconstruction" title="QPCA.decomposition.QPCA.quantum_input_matrix_reconstruction"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quantum_input_matrix_reconstruction()</span></code></a>.</p>
+<p>Finally, you can reconstruct the original input matrix using <code class="xref py py-meth docutils literal notranslate"><span class="pre">quantum_input_matrix_reconstruction()</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rec_input_matrix</span><span class="o">=</span><span class="n">qpca</span><span class="o">.</span><span class="n">quantum_input_matrix_reconstruction</span><span class="p">()</span>
 </pre></div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>decomposition &mdash; Qpca  documentation</title>
@@ -245,7 +245,7 @@ and <cite>n_features</cite> is the number of features.</p>
 <p>It is important to consider that the input matrix is divided by its trace so as to have the eigenvalues between 0 and 1.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="QPCA.decomposition.QPCA.eigenvectors_reconstruction">
-<span class="sig-name descname"><span class="pre">eigenvectors_reconstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_shots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_repetitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.decomposition.QPCA.eigenvectors_reconstruction" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eigenvectors_reconstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_shots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_repetitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigenvalue_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.decomposition.QPCA.eigenvectors_reconstruction" title="Permalink to this definition"></a></dt>
 <dd><p>Method that reconstructs the eigenvalues/eigenvectors once performed Phase Estimation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -254,6 +254,8 @@ and <cite>n_features</cite> is the number of features.</p>
 <li><p><strong>n_repetitions</strong> (<em>int value</em><em>, </em><em>default=1.</em>) – Number of times that state vector tomography will be executed. If &gt; 1, the final result will be the average result
 of all the execution of the tomography.</p></li>
 <li><p><strong>plot_peaks</strong> (<em>bool value</em><em>, </em><em>defualt=False</em>) – If True, it returns a plot of the peaks which correspond to the eigenvalues finded by the phase estimation procedure.</p></li>
+<li><p><strong>eigenvalue_threshold</strong> (<em>float value</em><em>, </em><em>default=None</em>) – It acts as a threshold that cut out the eigenvalues (and the corrseponding eigenvectors) that are smaller than this value.</p></li>
+<li><p><strong>abs_tolerance</strong> (<em>float value</em><em>, </em><em>default=1e-04</em>) – Absolute tolerance parameter used to cut out the eigenvalues estimated badly due to insufficient resolution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -294,7 +296,7 @@ way, the statevector of the quantum state is reconstructed and a postprocessing 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="QPCA.decomposition.QPCA.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_qram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pe_circuit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.decomposition.QPCA.fit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimized_qram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_qram</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_pe_circuit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.decomposition.QPCA.fit" title="Permalink to this definition"></a></dt>
 <dd><p>Fit Qpca model. This method generates the encoding matrix circuit and apply the phase estimation operator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -302,6 +304,8 @@ way, the statevector of the quantum state is reconstructed and a postprocessing 
 <li><p><strong>input_matrix</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Input hermitian matrix on which you want to apply QPCA divided by its trace, where <cite>n_samples</cite> is the number of samples
 and <cite>n_features</cite> is the number of features.</p></li>
 <li><p><strong>resolution</strong> (<em>int value</em>) – Number of qubits used for the phase estimation process to encode the eigenvalues.</p></li>
+<li><p><strong>optimized_qram</strong> (<em>bool flag</em><em>, </em><em>default=True</em>) – If True, it returns an optimized version of the preprocessing circuit. Otherwise, a custom implementation of a Qram is returned.
+Unless necessary, it is recommended to keep the optimized version of this circuit.</p></li>
 <li><p><strong>plot_qram</strong> (<em>bool value</em><em>, </em><em>default=False</em>) – If True, it returns a plot of the Qram circuit that encodes the input matrix.</p></li>
 <li><p><strong>plot_pe_circuit</strong> (<em>bool value</em><em>, </em><em>default=False</em>) – If True, it returns a plot of the circuit composed of Qram and phase estimation operator.</p></li>
 </ul>
@@ -377,6 +381,26 @@ reconstructed sign). If True, it has effect only if the eigenvector_benchmarking
 </dd>
 </dl>
 <p class="rubric">Notes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="QPCA.decomposition.QPCA.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.decomposition.QPCA.transform" title="Permalink to this definition"></a></dt>
+<dd><p>Apply dimensionality reduction to input_matrix.</p>
+<p>Input_matrix is projected on the first principal components previously extracted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_matrix</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data, where <cite>n_samples</cite> is the number of samples
+and <cite>n_features</cite> is the number of features.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>input_matrix_transformed</strong> – Projection of input_matrix in the first principal components, where <cite>n_samples</cite>
+is the number of samples and <cite>n_components</cite> is the number of the components.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like of shape (n_samples, n_components)</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

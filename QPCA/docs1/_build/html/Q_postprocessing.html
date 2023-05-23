@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>postprocessingUtilities &mdash; Qpca  documentation</title>
@@ -44,10 +44,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">QPCA</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="QPCA.html">decomposition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-QPCA.decomposition">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA"><code class="docutils literal notranslate"><span class="pre">QPCA</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="QUtilities.html">quantumUtilities</a><ul>
@@ -60,10 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Q_preprocessing.html">preprocessingUtilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-QPCA.preprocessingUtilities">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Q_preprocessing.html#QPCA.preprocessingUtilities.generate_matrix"><code class="docutils literal notranslate"><span class="pre">generate_matrix()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">postprocessingUtilities</a><ul>
@@ -74,13 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">benchmark</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-QPCA.benchmark">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvalues_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvalues_benchmarking()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvectors_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvectors_benchmarking()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.error_benchmark"><code class="docutils literal notranslate"><span class="pre">error_benchmark()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.sign_reconstruction_benchmarking"><code class="docutils literal notranslate"><span class="pre">sign_reconstruction_benchmarking()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -136,7 +124,7 @@
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-QPCA.postprocessingUtilities" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="QPCA.postprocessingUtilities.general_postprocessing">
-<span class="sig-prename descclassname"><span class="pre">QPCA.postprocessingUtilities.</span></span><span class="sig-name descname"><span class="pre">general_postprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statevector_dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_shots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_peaks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.postprocessingUtilities.general_postprocessing" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">QPCA.postprocessingUtilities.</span></span><span class="sig-name descname"><span class="pre">general_postprocessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statevector_dictionary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_shots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_peaks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eigenvalue_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_tolerance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QPCA.postprocessingUtilities.general_postprocessing" title="Permalink to this definition"></a></dt>
 <dd><p>Eigenvectors reconstruction process from the reconstructed statevector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -146,6 +134,8 @@
 <li><p><strong>resolution</strong> (<em>int value</em>) – Number of qubits used in the phase estimation process to represent the eigenvalues.</p></li>
 <li><p><strong>n_shots</strong> (<em>int value</em>) – Number of measures performed in the tomography process.</p></li>
 <li><p><strong>plot_peaks</strong> (<em>bool value</em>) – If True, it returns a plot of the peaks which correspond to the eigenvalues finded by the phase estimation procedure.</p></li>
+<li><p><strong>eigenvalue_threshold</strong> (<em>float value</em>) – It acts as a threshold that cut out the eigenvalues (and the corrseponding eigenvectors) that are smaller than this value.</p></li>
+<li><p><strong>abs_tolerance</strong> (<em>float value</em>) – Absolute tolerance parameter used to cut out the eigenvalues estimated badly due to insufficient resolution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

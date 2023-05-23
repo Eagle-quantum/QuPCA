@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example &mdash; Qpca  documentation</title>
@@ -43,10 +43,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">QPCA</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="QPCA.html">decomposition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-QPCA.decomposition">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA"><code class="docutils literal notranslate"><span class="pre">QPCA</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="QPCA.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="QUtilities.html">quantumUtilities</a><ul>
@@ -59,10 +56,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Q_preprocessing.html">preprocessingUtilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-QPCA.preprocessingUtilities">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Q_preprocessing.html#QPCA.preprocessingUtilities.generate_matrix"><code class="docutils literal notranslate"><span class="pre">generate_matrix()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="Q_preprocessing.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Q_postprocessing.html">postprocessingUtilities</a><ul>
@@ -73,13 +67,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark.html">benchmark</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-QPCA.benchmark">Module contents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvalues_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvalues_benchmarking()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.eigenvectors_benchmarking"><code class="docutils literal notranslate"><span class="pre">eigenvectors_benchmarking()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.error_benchmark"><code class="docutils literal notranslate"><span class="pre">error_benchmark()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchmark.html#QPCA.benchmark.sign_reconstruction_benchmarking"><code class="docutils literal notranslate"><span class="pre">sign_reconstruction_benchmarking()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="benchmark.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -130,7 +118,7 @@
              
   <section id="example">
 <h1>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h1>
-<p>In the <a class="reference internal" href="benchmark.html#module-QPCA.benchmark" title="QPCA.benchmark"><code class="xref py py-mod docutils literal notranslate"><span class="pre">benchmark</span></code></a> module, you will find 4 methods to benchmark the execution of Qpca algorithm.
+<p>In the <code class="xref py py-mod docutils literal notranslate"><span class="pre">benchmark</span></code> module, you will find 4 methods to benchmark the execution of Qpca algorithm.
 Here below there are reported some possible usage of the methods of benchmarking.</p>
 <p>First, a seed is set for the reproducibility of the experiments. Then, the resolution is set to 8 qubits and
 the matrix that will be considered is a 4x4 matrix with a custom list of eigenvalues. The number of measures for
@@ -148,8 +136,8 @@ the eigenvectors reconstruction is set to 1000000.</p>
 <span class="n">shots_numbers</span><span class="o">=</span><span class="p">[</span><span class="mi">1000000</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Then, a Qpca object is fitted using the generated input matrix and the chosen resolution. Finally, using <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.eigenvectors_reconstruction" title="QPCA.decomposition.QPCA.eigenvectors_reconstruction"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eigenvectors_reconstruction()</span></code></a>, you are able to reconstruct the eigenvalues/eigenvectors.
-The first reference example concerns the accuracy of reconstructing eigenvectors using <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.spectral_benchmarking" title="QPCA.decomposition.QPCA.spectral_benchmarking"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spectral_benchmarking()</span></code></a></p>
+<p>Then, a Qpca object is fitted using the generated input matrix and the chosen resolution. Finally, using <code class="xref py py-meth docutils literal notranslate"><span class="pre">eigenvectors_reconstruction()</span></code>, you are able to reconstruct the eigenvalues/eigenvectors.
+The first reference example concerns the accuracy of reconstructing eigenvectors using <code class="xref py py-meth docutils literal notranslate"><span class="pre">spectral_benchmarking()</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">resolution</span> <span class="ow">in</span> <span class="n">resolutions</span><span class="p">:</span>
    <span class="n">qpca</span><span class="o">=</span><span class="n">QPCA</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">input_matrix</span><span class="p">,</span><span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shots_numbers</span><span class="p">:</span>
@@ -172,9 +160,9 @@ original ones (black crosses) is shown. If the <code class="xref py py-obj docut
 </section>
 <section id="eigenvectors-reconstruction-error-benchmark">
 <h2>Eigenvectors reconstruction error benchmark<a class="headerlink" href="#eigenvectors-reconstruction-error-benchmark" title="Permalink to this heading"></a></h2>
-<p>Using the <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.error_benchmarking" title="QPCA.decomposition.QPCA.error_benchmarking"><code class="xref py py-meth docutils literal notranslate"><span class="pre">error_benchmarking()</span></code></a> method, you can visualize better the trend of the reconstruction error for each eigenvectors as the number of measures and number of
+<p>Using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">error_benchmarking()</span></code> method, you can visualize better the trend of the reconstruction error for each eigenvectors as the number of measures and number of
 resolution qubits increase. As before, once the number of measures and resolution qubits are chosen, you can perform the fit and eigenvectors reconstruction procedures.
-Pay attention: it is important to save the results of the benchmark into specific dictionary, as in the code below. This is because the <a class="reference internal" href="QPCA.html#QPCA.decomposition.QPCA.error_benchmarking" title="QPCA.decomposition.QPCA.error_benchmarking"><code class="xref py py-meth docutils literal notranslate"><span class="pre">error_benchmarking()</span></code></a> function
+Pay attention: it is important to save the results of the benchmark into specific dictionary, as in the code below. This is because the <code class="xref py py-meth docutils literal notranslate"><span class="pre">error_benchmarking()</span></code> function
 expects dictionaries as parameters.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shots_numbers</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1500</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">100000</span><span class="p">,</span><span class="mi">500000</span><span class="p">,</span><span class="mi">1000000</span><span class="p">]</span>
 <span class="n">resolutions</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
