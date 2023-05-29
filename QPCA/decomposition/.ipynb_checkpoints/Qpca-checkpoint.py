@@ -390,7 +390,7 @@ class QPCA():
             -----
             """
 
-            eigenValues,eigenVectors=np.linalg.eig(self.input_matrix)
+            eigenValues,eigenVectors=np.linalg.eig(self.true_input_matrix)
             idx = eigenValues.argsort()[::-1]   
             original_eigenValues = eigenValues[idx]
             original_eigenVectors = eigenVectors[:,idx]
