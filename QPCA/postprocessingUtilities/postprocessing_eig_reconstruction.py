@@ -92,8 +92,8 @@ def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_s
         l_list=[]
         save_sign=[]
         eigenvalues=[]
-        for l in lambdas:
-            
+        idx_to_remove=[]
+        for e,l in enumerate(lambdas):
             #conversion from binary description of the eigenvalue to integer form, remembering that phase estimation encode the eigenvalue as x/2^resolution
             eigenvalue=int(l[::-1],base=2)/(2**resolution)
             eigenvalues.append(eigenvalue)
@@ -104,6 +104,8 @@ def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_s
                 eigenvalues.pop()
                 save_sign.pop()
                 l_list.pop()
+                idx_to_remove.append(e)
+        mean_threshold=np.delete(mean_threshold,idx_to_remove)
                 
         for i in range(len(l_list)):
             normalization_factor=np.sqrt((1/(sum(l_list[i]**2))))
