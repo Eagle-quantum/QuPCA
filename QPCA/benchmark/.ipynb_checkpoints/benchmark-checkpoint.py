@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from texttable import Texttable
 from scipy.spatial import distance 
 
-def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eigenvalues, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, 
+def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eigenvalues, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, resolution, 
                               n_shots, print_distances=True, only_first_eigenvectors=True, plot_delta=False, distance_type='l2', error_with_sign=False, hide_plot=False):
 
     """ Method to benchmark the quality of the reconstructed eigenvectors.
@@ -30,6 +30,9 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
     
     mean_threshold: array-like
                 This array contains the mean between the left and right peaks vertical distance to its neighbouring samples. It is useful for the benchmark process to cut out the bad eigenvalues.
+    
+    resolution: int value
+                Number of qubits used for the phase estimation process to encode the eigenvalues.
     
     n_shots: int value
                 Number of measures performed in the tomography process.
@@ -76,7 +79,7 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
     
     correct_reconstructed_eigenvectors=[reconstructed_eigenvectors[:,j] for c_r_e in correct_reconstructed_eigenvalues for j in range(len(reconstructed_eigenvalues)) if c_r_e==reconstructed_eigenvalues[j]]
 
-    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues)
+    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues,correct_reconstructed_eigenvectors,resolution)
    
     fig, ax = plt.subplots(1,len(correct_reconstructed_eigenvalues),figsize=(30, 10))
     if len(correct_reconstructed_eigenvalues)>1:
@@ -220,7 +223,7 @@ def eigenvalues_benchmarking(original_eigenvalues, reconstructed_eigenvalues, me
     if print_error:
         t = Texttable()
     for eig in correct_reconstructed_eigenvalues:
-        x,min_=__find_nearest(original_eigenvalues,eig)
+        x,idx_x,min_=__find_nearest(original_eigenvalues,eig)
         idx_list.append(dict_original_eigenvalues[x])
         if print_error:
             error=abs(eig-x)
@@ -353,7 +356,7 @@ def error_benchmark(shots_dict, error_dict, dict_original_eigenvalues, delta_lis
         tmp_shots_list={}
         for key,value in dict__.items():
             
-            x,min_=__find_nearest(original_eigenvalues,key)
+            x,idx_x,min_=__find_nearest(original_eigenvalues,key)
             tmp_dict.setdefault(x, [])
             tmp_shots_list.setdefault(x, [])
             tmp_shots_list[x]+=shots_dict[res][key]
@@ -371,7 +374,7 @@ def error_benchmark(shots_dict, error_dict, dict_original_eigenvalues, delta_lis
     plt.show()
     
     
-def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVectors, original_eigenValues, lambdas_num):
+def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVectors, original_eigenValues, lambdas_num, reconstructed_eigenvectors, resolution):
     
     check_eigenvalues={}
     new_original_eigenvalues=[]
@@ -379,22 +382,41 @@ def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVect
     
     for i in original_eigenValues:
         check_eigenvalues.update({i:0})
-    
-    for l_n in lambdas_num:
-        x,min_=__find_nearest(original_eigenValues,l_n)
+
+    for en, l_n in enumerate(lambdas_num):
+        
+        x,idx_x,min_=__find_nearest(original_eigenValues,l_n)
+
+        # check if two or more eigenvalues are less than 1/(2**resolution) apart
+        
+        idx_to_check=[]
+        for e1 in range(len(original_eigenValues)):
+            for e2 in range(e1+1, len(original_eigenValues)):
+                if original_eigenValues[e1]-original_eigenValues[e2]<1/(2**resolution):
+                    idx_to_check.append(e1)
+                    idx_to_check.append(e2)
+        idx_to_check=set(idx_to_check)
+
+        if idx_x in idx_to_check:
+            
+            #x (the "nearest" eigenvalue) becomes the eigenvalue whose eigenvector has minimum abs l2-distance from the eigenvector of the estimated eigenvalue under consideration l_n
+            eigenvectors_differences=[abs(reconstructed_eigenvectors[en])-abs(original_eigenVectors[:,idx]) for idx in idx_to_check]
+          
+            x=original_eigenValues[list(idx_to_check)[np.argmin(np.linalg.norm(eigenvectors_differences,axis=1))]]
+
         if check_eigenvalues[x]==0:
             check_eigenvalues.update({x:1})
             new_original_eigenvalues.append(x)
         else:
             continue
-    
     for d in list(check_eigenvalues.keys()):
         if check_eigenvalues[d]==1:
             check_eigenvalues.pop(d)
            
+    # append the eigenvectors corresponding to the non-estimated eigenvalues to the end
+    
     if len(check_eigenvalues)>0:
         new_original_eigenvalues+=list(check_eigenvalues.keys())
-    
     
     for i in new_original_eigenvalues:
         for j in range(len(original_eigenValues)):
@@ -413,7 +435,8 @@ def __remove_usless_peaks(lambdas_num, mean_threshold, original_eig):
     #hashmap to store original eigenvalue 
     
     for i in original_eig:
-            check_eigenvalues.update({i:0}) 
+        
+        check_eigenvalues.update({i:0}) 
     
     #check if we have two eigenvalues with the same mean_threshold values: it means that one of them will be a wrong estimated one
     
@@ -429,7 +452,7 @@ def __remove_usless_peaks(lambdas_num, mean_threshold, original_eig):
         #Therefore the corresponding estimated eigenvalue can be considered as correctly estimated. 
         
         for n_e_t in not_equal_threshold:
-            x,min_=__find_nearest(original_eig,n_e_t)
+            x,idx_x,min_=__find_nearest(original_eig,n_e_t)
             if check_eigenvalues[x]==0:
                 check_eigenvalues.update({x:1})
                 peaks_to_keep.append(n_e_t)
@@ -440,7 +463,7 @@ def __remove_usless_peaks(lambdas_num, mean_threshold, original_eig):
         #In case of two very similar eigenvalues with the same mean_threshold, we keep the right one by looking at the minimum distance with respect to the original eigenvalue not already considered.
 
         for e_t in equal_thresholds:
-            x,min_=__find_nearest(original_eig,e_t)
+            x,idx_x,min_=__find_nearest(original_eig,e_t)
             tuple_=(e_t,min_)
             dict_for_equal_threshold.setdefault(x, []).append(tuple_)
        
@@ -457,7 +480,7 @@ def __remove_usless_peaks(lambdas_num, mean_threshold, original_eig):
             peaks_not_to_keep+=not_minimum_to_discard
     else:
         for n_p in lambdas_num:
-            x,min_=__find_nearest(original_eig,n_p)
+            x,idx_x,min_=__find_nearest(original_eig,n_p)
             if check_eigenvalues[x]==0:
                 check_eigenvalues.update({x:1})
                 peaks_to_keep.append(n_p)
@@ -475,7 +498,7 @@ def __find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.abs(array - value)).argmin()
     min_=(np.abs(array - value)).min()
-    return array[idx],min_
+    return array[idx],idx,min_
     
 def distance_function_wrapper(distance_type, *args):
     reconstructed_eig= args[0]
