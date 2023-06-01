@@ -240,7 +240,7 @@ def eigenvalues_benchmarking(original_eigenvalues, reconstructed_eigenvalues, me
     
 
             
-def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, original_eigenvectors, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, n_shots):
+def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, original_eigenvectors, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, n_shots, resolution):
     
     """ Method to benchmark the quality of the sign reconstruction for the reconstructed eigenvectors. 
 
@@ -268,6 +268,9 @@ def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, origina
     
     n_shots: int value
                 The number of measures performed for the reconstruction of the eigenvectors.
+                
+    resolution: int value
+                Number of qubits used for the phase estimation process to encode the eigenvalues.
     
 
     Returns
@@ -281,7 +284,7 @@ def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, origina
     
     correct_reconstructed_eigenvectors=[reconstructed_eigenvectors[:,j] for c_r_e in correct_reconstructed_eigenvalues for j in range(len(reconstructed_eigenvalues)) if c_r_e==reconstructed_eigenvalues[j]]
     
-    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues)
+    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues, correct_reconstructed_eigenvectors, resolution)
     
     t = Texttable()
     for e in range(len(correct_reconstructed_eigenvalues)):

@@ -409,7 +409,7 @@ class QPCA():
             if sign_benchmarking:
                 sign_reconstruction_benchmarking(input_matrix=self.true_input_matrix, original_eigenvalues=original_eigenValues, original_eigenvectors=original_eigenVectors,
                                                  reconstructed_eigenvalues=self.reconstructed_eigenvalues, reconstructed_eigenvectors=self.reconstructed_eigenvectors,
-                                                 mean_threshold=self.mean_threshold,n_shots=self.n_shots)
+                                                 mean_threshold=self.mean_threshold,n_shots=self.n_shots,resolution=self.resolution)
 
             if eigenvector_benchmarking:
                 
