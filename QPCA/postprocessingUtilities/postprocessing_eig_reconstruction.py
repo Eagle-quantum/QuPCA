@@ -76,7 +76,7 @@ def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_s
         lambdas=lambdas[~bad_peaks_mask]
         lambdas_num=lambdas_num[~bad_peaks_mask]
         mean_threshold=mean_threshold[~bad_peaks_mask]
-        
+
         df.columns=['state','module','lambda']
         
         #add reconstructed sign to the module column
