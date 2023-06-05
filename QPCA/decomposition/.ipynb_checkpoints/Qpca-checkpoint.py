@@ -300,7 +300,10 @@ class QPCA():
             is the number of samples and `n_components` is the number of the components.
         """
         
-        input_matrix_transformed=np.dot(input_matrix, self.reconstructed_eigenvectors)
+        k = self.reconstructed_eigenvalues.argsort()[::-1]   
+        reconstructed_eigenvectors = self.reconstructed_eigenvectors[:,k]
+        input_matrix_transformed=np.dot(input_matrix, reconstructed_eigenvectors)
+        
         return input_matrix_transformed
     
     
