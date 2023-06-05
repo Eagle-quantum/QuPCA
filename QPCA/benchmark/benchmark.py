@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from texttable import Texttable
 from scipy.spatial import distance 
 
-def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eigenvalues, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, resolution, 
+def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eigenvalues, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, 
                               n_shots, print_distances=True, only_first_eigenvectors=True, plot_delta=False, distance_type='l2', error_with_sign=False, hide_plot=False):
 
     """ Method to benchmark the quality of the reconstructed eigenvectors.
@@ -30,9 +30,6 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
     
     mean_threshold: array-like
                 This array contains the mean between the left and right peaks vertical distance to its neighbouring samples. It is useful for the benchmark process to cut out the bad eigenvalues.
-    
-    resolution: int value
-                Number of qubits used for the phase estimation process to encode the eigenvalues.
     
     n_shots: int value
                 Number of measures performed in the tomography process.
@@ -79,7 +76,7 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
     
     correct_reconstructed_eigenvectors=[reconstructed_eigenvectors[:,j] for c_r_e in correct_reconstructed_eigenvalues for j in range(len(reconstructed_eigenvalues)) if c_r_e==reconstructed_eigenvalues[j]]
 
-    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues,correct_reconstructed_eigenvectors,resolution)
+    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues)
    
     fig, ax = plt.subplots(1,len(correct_reconstructed_eigenvalues),figsize=(30, 10))
     if len(correct_reconstructed_eigenvalues)>1:
@@ -240,7 +237,7 @@ def eigenvalues_benchmarking(original_eigenvalues, reconstructed_eigenvalues, me
     
 
             
-def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, original_eigenvectors, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, n_shots, resolution):
+def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, original_eigenvectors, reconstructed_eigenvalues, reconstructed_eigenvectors, mean_threshold, n_shots):
     
     """ Method to benchmark the quality of the sign reconstruction for the reconstructed eigenvectors. 
 
@@ -268,10 +265,6 @@ def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, origina
     
     n_shots: int value
                 The number of measures performed for the reconstruction of the eigenvectors.
-                
-    resolution: int value
-                Number of qubits used for the phase estimation process to encode the eigenvalues.
-    
 
     Returns
     -------
@@ -284,7 +277,7 @@ def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, origina
     
     correct_reconstructed_eigenvectors=[reconstructed_eigenvectors[:,j] for c_r_e in correct_reconstructed_eigenvalues for j in range(len(reconstructed_eigenvalues)) if c_r_e==reconstructed_eigenvalues[j]]
     
-    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues, correct_reconstructed_eigenvectors, resolution)
+    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues)
     
     t = Texttable()
     for e in range(len(correct_reconstructed_eigenvalues)):
@@ -377,7 +370,7 @@ def error_benchmark(shots_dict, error_dict, dict_original_eigenvalues, delta_lis
     plt.show()
     
     
-def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVectors, original_eigenValues, lambdas_num, reconstructed_eigenvectors, resolution):
+def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVectors, original_eigenValues, lambdas_num):
     
     check_eigenvalues={}
     new_original_eigenvalues=[]
@@ -386,26 +379,11 @@ def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVect
     for i in original_eigenValues:
         check_eigenvalues.update({i:0})
 
-    for en, l_n in enumerate(lambdas_num):
+    for l_n in lambdas_num:
         
         x,idx_x,min_=__find_nearest(original_eigenValues,l_n)
 
         # check if two or more eigenvalues are less than 1/(2**resolution) apart
-        
-        idx_to_check=[]
-        for e1 in range(len(original_eigenValues)):
-            for e2 in range(e1+1, len(original_eigenValues)):
-                if original_eigenValues[e1]-original_eigenValues[e2]<1/(2**resolution):
-                    idx_to_check.append(e1)
-                    idx_to_check.append(e2)
-        idx_to_check=set(idx_to_check)
-
-        if idx_x in idx_to_check:
-            
-            #x (the "nearest" eigenvalue) becomes the eigenvalue whose eigenvector has minimum abs l2-distance from the eigenvector of the estimated eigenvalue under consideration l_n
-            eigenvectors_differences=[abs(reconstructed_eigenvectors[en])-abs(original_eigenVectors[:,idx]) for idx in idx_to_check]
-          
-            x=original_eigenValues[list(idx_to_check)[np.argmin(np.linalg.norm(eigenvectors_differences,axis=1))]]
 
         if check_eigenvalues[x]==0:
             check_eigenvalues.update({x:1})

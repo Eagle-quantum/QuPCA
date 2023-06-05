@@ -399,7 +399,7 @@ class QPCA():
             if eigenvector_benchmarking:
                 error_list, delta=eigenvectors_benchmarking(input_matrix=self.true_input_matrix, original_eigenvalues=original_eigenValues, original_eigenvectors=original_eigenVectors,
                                                             reconstructed_eigenvalues=self.reconstructed_eigenvalues, reconstructed_eigenvectors=self.reconstructed_eigenvectors,
-                                                            mean_threshold=self.mean_threshold, resolution=self.resolution ,n_shots=self.n_shots,print_distances=print_distances, only_first_eigenvectors=only_first_eigenvectors,
+                                                            mean_threshold=self.mean_threshold, n_shots=self.n_shots,print_distances=print_distances, only_first_eigenvectors=only_first_eigenvectors,
                                                             plot_delta=plot_delta,distance_type=distance_type,error_with_sign=error_with_sign,hide_plot=hide_plot)
             if eigenvalues_benchmarching:
                 eigenvalues_benchmarking(original_eigenvalues=original_eigenValues,
@@ -409,7 +409,7 @@ class QPCA():
             if sign_benchmarking:
                 sign_reconstruction_benchmarking(input_matrix=self.true_input_matrix, original_eigenvalues=original_eigenValues, original_eigenvectors=original_eigenVectors,
                                                  reconstructed_eigenvalues=self.reconstructed_eigenvalues, reconstructed_eigenvectors=self.reconstructed_eigenvectors,
-                                                 mean_threshold=self.mean_threshold,n_shots=self.n_shots,resolution=self.resolution)
+                                                 mean_threshold=self.mean_threshold,n_shots=self.n_shots)
 
             if eigenvector_benchmarking:
                 
