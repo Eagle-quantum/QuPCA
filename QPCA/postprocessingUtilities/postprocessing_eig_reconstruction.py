@@ -70,8 +70,9 @@ def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_s
             if eigenvalue_threshold:
                 ax.axvline(eigenvalue_threshold,ls='--',c='red',label='eigenvalues threshold')
                 ax.legend()
-            
+        
         lambdas,lambdas_num,mean_threshold=__peaks_extraction(tail,len_input_matrix,n_shots)
+
         bad_peaks_mask=np.isclose(mean_threshold,0,atol=abs_tolerance)
         lambdas=lambdas[~bad_peaks_mask]
         lambdas_num=lambdas_num[~bad_peaks_mask]
