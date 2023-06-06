@@ -71,40 +71,37 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
     """
     
     save_list=[]
-    
-    correct_reconstructed_eigenvalues=__remove_usless_peaks(reconstructed_eigenvalues,mean_threshold,original_eigenvalues)
-    
-    correct_reconstructed_eigenvectors=[reconstructed_eigenvectors[:,j] for c_r_e in correct_reconstructed_eigenvalues for j in range(len(reconstructed_eigenvalues)) if c_r_e==reconstructed_eigenvalues[j]]
 
-    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues)
+    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,reconstructed_eigenvalues)
    
-    fig, ax = plt.subplots(1,len(correct_reconstructed_eigenvalues),figsize=(30, 10))
-    if len(correct_reconstructed_eigenvalues)>1:
+    fig, ax = plt.subplots(1,len(reconstructed_eigenvalues),figsize=(30, 10))
+    if len(reconstructed_eigenvalues)>1:
         
         for e,chart in enumerate(ax.reshape(-1,order='F')):
-            delta=np.sqrt((36*len(original_eigenVectors[:,e%len(input_matrix)])*np.log(len(original_eigenVectors[:,e%len(input_matrix)])))/(n_shots))
-
+            delta=np.sqrt((36*len(original_eigenVectors[:,e])*np.log(len(original_eigenVectors[:,e])))/(n_shots))
+            
             if error_with_sign==True:
-
-                sign_original=np.sign(original_eigenVectors[:,e%len(input_matrix)])
+                
+                sign_original=np.sign(original_eigenVectors[:,e])
                 sign_original[sign_original==0]=1
-                sign_reconstructed=np.sign(correct_reconstructed_eigenvectors[e%len(input_matrix)])
+                sign_reconstructed=np.sign(reconstructed_eigenvectors[:,e])
                 sign_reconstructed[sign_reconstructed==0]=1
                 inverse_sign_original=sign_original*-1       
                 sign_difference=(sign_original==sign_reconstructed).sum()
                 inverse_sign_difference=(inverse_sign_original==sign_reconstructed).sum()
 
                 if sign_difference>=inverse_sign_difference:
-                    original_eigenvector=original_eigenVectors[:,e%len(input_matrix)]
+                    original_eigenvector=original_eigenVectors[:,e]
                 else:
-                    original_eigenvector=original_eigenVectors[:,e%len(input_matrix)]*-1
-                reconstructed_eigenvector=correct_reconstructed_eigenvectors[e%len(input_matrix)]
+                    original_eigenvector=original_eigenVectors[:,e]*-1
+                reconstructed_eigenvector=reconstructed_eigenvectors[:,e]
             else:
-                original_eigenvector=abs(original_eigenVectors[:,e%len(input_matrix)])
-                reconstructed_eigenvector=abs(correct_reconstructed_eigenvectors[e%len(input_matrix)])
+                original_eigenvector=abs(original_eigenVectors[:,e])
+                reconstructed_eigenvector=abs(reconstructed_eigenvectors[:,e])
+                
             if plot_delta:
 
-                for i in range(len(original_eigenVectors[:,(e%len(input_matrix))])):
+                for i in range(len(original_eigenVectors[:,e])):
                     circle=plt.Circle((i+1,original_eigenvector[i]),np.sqrt(7)*delta,color='g',alpha=0.1)
                     chart.add_patch(circle)
                     chart.axis("equal")
@@ -123,11 +120,11 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
                 distance=distance_function_wrapper(distance_type,reconstructed_eigenvector,original_eigenvector)
                 chart.plot([], [], ' ', label=distance_type+"_error "+str(np.round(distance,4)))
 
-            save_list.append((correct_reconstructed_eigenvalues[e%len(input_matrix)],np.round(distance,4)))
+            save_list.append((reconstructed_eigenvalues[e],np.round(distance,4)))
             chart.plot([], [], ' ', label="n_shots "+str(n_shots))
             chart.legend()
             chart.set_ylabel("eigenvector's values")
-            chart.set_title('Eigenvectors corresponding to eigenvalues '+str(correct_reconstructed_eigenvalues[e%len(input_matrix)]))
+            chart.set_title('Eigenvectors corresponding to eigenvalues '+str(reconstructed_eigenvalues[e]))
             if only_first_eigenvectors:
                 break
     else:
@@ -138,7 +135,7 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
 
             sign_original=np.sign(original_eigenVectors[:,0])
             sign_original[sign_original==0]=1
-            sign_reconstructed=np.sign(correct_reconstructed_eigenvectors[0])
+            sign_reconstructed=np.sign(reconstructed_eigenvectors[:,0])
             sign_reconstructed[sign_reconstructed==0]=1
             inverse_sign_original=sign_original*-1       
             sign_difference=(sign_original==sign_reconstructed).sum()
@@ -148,10 +145,10 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
                 original_eigenvector=original_eigenVectors[:,0]
             else:
                 original_eigenvector=original_eigenVectors[:,0]*-1
-            reconstructed_eigenvector=correct_reconstructed_eigenvectors[0]
+            reconstructed_eigenvector=reconstructed_eigenvectors[:,0]
         else:
             original_eigenvector=abs(original_eigenVectors[:,0])
-            reconstructed_eigenvector=abs(correct_reconstructed_eigenvectors[0])
+            reconstructed_eigenvector=abs(reconstructed_eigenvectors[:,0])
         if plot_delta:
 
             for i in range(len(original_eigenVectors[:,0])):
@@ -169,15 +166,13 @@ def eigenvectors_benchmarking(input_matrix, original_eigenvectors, original_eige
 
 
         if print_distances:
-
             distance=distance_function_wrapper(distance_type,reconstructed_eigenvector,original_eigenvector)
             ax.plot([], [], ' ', label=distance_type+"_error "+str(np.round(distance,4)))
-
-        save_list.append((correct_reconstructed_eigenvalues[0],np.round(distance,4)))
+        save_list.append((reconstructed_eigenvalues[0],np.round(distance,4)))
         ax.plot([], [], ' ', label="n_shots "+str(n_shots))
         ax.legend()
         ax.set_ylabel("eigenvector's values")
-        ax.set_title('Eigenvectors corresponding to eigenvalues '+str(correct_reconstructed_eigenvalues[0]))
+        ax.set_title('Eigenvectors corresponding to eigenvalues '+str(reconstructed_eigenvalues[0]))
     if hide_plot:
         plt.close()
     else:
@@ -210,23 +205,21 @@ def eigenvalues_benchmarking(original_eigenvalues, reconstructed_eigenvalues, me
     Notes
     -----
     """    
-    #reconstructed_eigenvalues=[eig[0] for eig in reconstructed_eigenvalue_eigenvector_tuple]
-
+    
     fig, ax = plt.subplots(figsize=(10, 10))
     
-    correct_reconstructed_eigenvalues=__remove_usless_peaks(reconstructed_eigenvalues,mean_threshold,original_eigenvalues)
     dict_original_eigenvalues = {original_eigenvalues[e]:e+1 for e in range(len(original_eigenvalues))}
     idx_list=[]
     if print_error:
         t = Texttable()
-    for eig in correct_reconstructed_eigenvalues:
+    for eig in reconstructed_eigenvalues:
         x,idx_x,min_=__find_nearest(original_eigenvalues,eig)
         idx_list.append(dict_original_eigenvalues[x])
         if print_error:
             error=abs(eig-x)
             lista=[['True eigenvalue','Reconstructed eigenvalue' ,'error'], [x,eig, error]]
             t.add_rows(lista)
-    ax.plot(idx_list,correct_reconstructed_eigenvalues,marker='o',label='reconstructed',linestyle='None',markersize=25,alpha=0.3,color='r')
+    ax.plot(idx_list,reconstructed_eigenvalues,marker='o',label='reconstructed',linestyle='None',markersize=25,alpha=0.3,color='r')
     ax.plot(list(range(1,len(original_eigenvalues)+1)),original_eigenvalues,marker='x',label='original',linestyle='None',markersize=20,color='black')
     ax.legend(labelspacing = 3)
     ax.set_ylabel('Eigenvalue')
@@ -273,17 +266,13 @@ def sign_reconstruction_benchmarking(input_matrix, original_eigenvalues, origina
     -----
     """ 
     
-    correct_reconstructed_eigenvalues=__remove_usless_peaks(reconstructed_eigenvalues,mean_threshold,original_eigenvalues)
-    
-    correct_reconstructed_eigenvectors=[reconstructed_eigenvectors[:,j] for c_r_e in correct_reconstructed_eigenvalues for j in range(len(reconstructed_eigenvalues)) if c_r_e==reconstructed_eigenvalues[j]]
-    
-    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,correct_reconstructed_eigenvalues)
+    original_eigenValues,original_eigenVectors=__reorder_original_eigenvalues_eigenvectors(input_matrix,original_eigenvectors,original_eigenvalues,reconstructed_eigenvalues)
     
     t = Texttable()
-    for e in range(len(correct_reconstructed_eigenvalues)):
+    for e in range(len(reconstructed_eigenvalues)):
         eigenvalue=original_eigenValues[e]
         o_eigenvector=original_eigenVectors[:,e]
-        r_eigenvector=correct_reconstructed_eigenvectors[e]
+        r_eigenvector=reconstructed_eigenvectors[:,e]
         sign_original=np.sign(o_eigenvector)
         sign_original[sign_original==0]=1
         sign_reconstructed=np.sign(r_eigenvector)
@@ -406,74 +395,6 @@ def __reorder_original_eigenvalues_eigenvectors(input_matrix, original_eigenVect
     new_original_eigenvectors=np.array(new_original_eigenvectors)
     new_original_eigenvectors=new_original_eigenvectors.reshape(len(input_matrix),len(input_matrix)).T
     return np.array(new_original_eigenvalues),new_original_eigenvectors
-
-def __remove_usless_peaks(lambdas_num, mean_threshold, original_eig):
-    
-    check_eigenvalues={}
-    peaks_to_keep=[]
-    peaks_not_to_keep=[]
-    
-    #hashmap to store original eigenvalue 
-    
-    for i in original_eig:
-        
-        check_eigenvalues.update({i:0}) 
-    
-    #check if we have two eigenvalues with the same mean_threshold values: it means that one of them will be a wrong estimated one
-    
-    if len(np.array(lambdas_num)[np.argwhere(mean_threshold == np.amin(mean_threshold))])>1:
-        
-        #the eigenvalues with the mean_threshold values different from each other will be taken in a different list 
-        
-        not_equal_threshold=np.array(lambdas_num)[np.argwhere(mean_threshold != np.amin(mean_threshold))]
-        equal_thresholds=np.array(lambdas_num)[np.argwhere(mean_threshold == np.amin(mean_threshold))]
-        dict_for_equal_threshold={}
-        
-        #check if the not_equal_thresholds eigenvalues are correctly estimated: if the nearest original eigenvalue , finded using the check_eigenvalues hashmap, has value 0 it means that it has not yet been considered
-        #Therefore the corresponding estimated eigenvalue can be considered as correctly estimated. 
-        
-        for n_e_t in not_equal_threshold:
-            x,idx_x,min_=__find_nearest(original_eig,n_e_t)
-            if check_eigenvalues[x]==0:
-                check_eigenvalues.update({x:1})
-                peaks_to_keep.append(n_e_t)
-            else:
-                peaks_not_to_keep.append(n_e_t)
-        
-        #same check of before but for the equal_thresholds eigenvalues, that we know having some issues due to the same mean_threshold values.
-        #In case of two very similar eigenvalues with the same mean_threshold, we keep the right one by looking at the minimum distance with respect to the original eigenvalue not already considered.
-
-        for e_t in equal_thresholds:
-            x,idx_x,min_=__find_nearest(original_eig,e_t)
-            tuple_=(e_t,min_)
-            dict_for_equal_threshold.setdefault(x, []).append(tuple_)
-       
-        for d_d in dict_for_equal_threshold:
-            minimum_to_keep=min(dict_for_equal_threshold[d_d], key = lambda t: t[1])[0]
-            not_minimum_to_discard=[e[0] for e in dict_for_equal_threshold[d_d] if e[0]!= minimum_to_keep]
-
-            if check_eigenvalues[d_d]==0:   
-                check_eigenvalues.update({d_d:1})
-                peaks_to_keep.append(minimum_to_keep)
-            else:
-            
-                peaks_not_to_keep.append(minimum_to_keep)
-            peaks_not_to_keep+=not_minimum_to_discard
-    else:
-        for n_p in lambdas_num:
-            x,idx_x,min_=__find_nearest(original_eig,n_p)
-            if check_eigenvalues[x]==0:
-                check_eigenvalues.update({x:1})
-                peaks_to_keep.append(n_p)
-            else:
-                peaks_not_to_keep.append(n_p)
-    
-    #remove wrongly estimated eigenvalue
-    
-    if len(peaks_not_to_keep)>0:
-        idxs=[list(lambdas_num).index(x) for x in peaks_not_to_keep if x in lambdas_num]
-        lambdas_num=np.delete(lambdas_num,idxs)
-    return sorted(lambdas_num,reverse=True)
 
 def __find_nearest(array, value):
     array = np.asarray(array)
