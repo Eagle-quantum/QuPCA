@@ -276,11 +276,10 @@ class QPCA():
         except:
             raise Exception('QPCA was not able to correctly reconstruct the eigenvectors! Check that you are not considering eigenvalues near to zero. In that case, you can both increase the number of shots or the resolution for the phase estimation.')
         
-        k = reconstructed_eigenvalues.argsort()[::-1]           
-        self.reconstructed_eigenvalues=reconstructed_eigenvalues[k]
-        self.reconstructed_eigenvectors=reconstructed_eigenvectors[:,k]
+        self.reconstructed_eigenvalues=reconstructed_eigenvalues
+        self.reconstructed_eigenvectors=reconstructed_eigenvectors
         
-        return self.reconstructed_eigenvalues,self.reconstructed_eigenvectors
+        return reconstructed_eigenvalues,reconstructed_eigenvectors
     
     def transform(self, input_matrix):
         
@@ -301,7 +300,9 @@ class QPCA():
             is the number of samples and `n_components` is the number of the components.
         """
         
-        input_matrix_transformed=np.dot(input_matrix, self.reconstructed_eigenvectors)
+        k = self.reconstructed_eigenvalues.argsort()[::-1]   
+        reconstructed_eigenvectors = self.reconstructed_eigenvectors[:,k]
+        input_matrix_transformed=np.dot(input_matrix, reconstructed_eigenvectors)
         
         return input_matrix_transformed
     
@@ -323,11 +324,15 @@ class QPCA():
         Using the reconstructed eigenvectors and eigenvalues from QPCA, we can reconstruct the original input matrix using the reverse procedure of SVD.
         """
         
-
         
-        reconstructed_eigenvalues=self.reconstructed_eigenvalues*self.input_matrix_trace
-        reconstructed_input_matrix = self.reconstructed_eigenvectors @ np.diag(reconstructed_eigenvalues) @ self.reconstructed_eigenvectors.T
+        k = self.reconstructed_eigenvalues.argsort()[::-1]   
+        reconstructed_eigenvalues = self.reconstructed_eigenvalues[k]
+        reconstructed_eigenvectors = self.reconstructed_eigenvectors[:,k]
+        reconstructed_eigenvalues*=self.input_matrix_trace
         
+        #reconstruct the input matrix by multiplying the eigenvectors/eigenvalues matrices 
+        
+        reconstructed_input_matrix = reconstructed_eigenvectors @ np.diag(reconstructed_eigenvalues) @ reconstructed_eigenvectors.T
         return reconstructed_input_matrix
     
     
