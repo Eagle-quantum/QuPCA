@@ -262,7 +262,7 @@ class QPCA():
         
         
         self.reconstructed_eigenvalue_eigenvector_tuple=eigenvalue_eigenvector_tuple
-        self.mean_threshold=mean_threshold
+        self.mean_threshold=mean_threshold[:len(self.true_input_matrix)]
         
         reconstructed_eigenvalues=np.array([])
         reconstructed_eigenvectors=np.array([])
