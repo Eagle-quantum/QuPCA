@@ -198,7 +198,7 @@ class QPCA():
         return self
 
 
-    def eigenvectors_reconstruction(self,n_shots=50000,n_repetitions=1,plot_peaks=False, eigenvalue_threshold=None, abs_tolerance=1e-04):
+    def eigenvectors_reconstruction(self,n_shots=50000,n_repetitions=1,plot_peaks=False, eigenvalue_threshold=None, abs_tolerance=None):
         
         """ Method that reconstructs the eigenvalues/eigenvectors once performed Phase Estimation. 
 
@@ -217,7 +217,7 @@ class QPCA():
         eigenvalue_threshold: float value, default=None
                         It acts as a threshold that cut out the eigenvalues (and the corrseponding eigenvectors) that are smaller than this value.
         
-        abs_tolerance: float value, default=1e-04
+        abs_tolerance: float value, default=None
                         Absolute tolerance parameter used to cut out the eigenvalues estimated badly due to insufficient resolution.
         
         Returns

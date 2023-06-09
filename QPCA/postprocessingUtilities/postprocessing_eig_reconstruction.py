@@ -1,8 +1,8 @@
 import numpy as np
 import itertools
 import pandas as pd
-from scipy.signal import find_peaks
-    
+from scipy.signal import find_peaks, peak_prominences
+import math
 def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_shots, plot_peaks, eigenvalue_threshold,abs_tolerance):
         
         """ Eigenvectors reconstruction process from the reconstructed statevector.
@@ -71,13 +71,16 @@ def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_s
                 ax.axvline(eigenvalue_threshold,ls='--',c='red',label='eigenvalues threshold')
                 ax.legend()
         
-        lambdas,lambdas_num,mean_threshold=__peaks_extraction(tail,len_input_matrix,n_shots)
-
+        lambdas,lambdas_num,mean_threshold=__peaks_extraction(tail,len_input_matrix,n_shots,abs_tolerance)
+        
+        if abs_tolerance==None:
+            abs_tolerance=1/n_shots
         bad_peaks_mask=np.isclose(mean_threshold,0,atol=abs_tolerance)
+
         lambdas=lambdas[~bad_peaks_mask]
         lambdas_num=lambdas_num[~bad_peaks_mask]
         mean_threshold=mean_threshold[~bad_peaks_mask]
-
+      
         df.columns=['state','module','lambda']
         
         #add reconstructed sign to the module column
@@ -133,7 +136,7 @@ def general_postprocessing(input_matrix, statevector_dictionary, resolution, n_s
         return eigenvalue_eigenvector_tuples,mean_threshold
     
 
-def __peaks_extraction(df,len_input_matrix,n_shots):
+def __peaks_extraction(df,len_input_matrix,n_shots,abs_tolerance):
     """ 
     Process to find the correct eigenvalues peaks after the PE procedure.
         
@@ -176,6 +179,7 @@ def __peaks_extraction(df,len_input_matrix,n_shots):
         
         p_=find_peaks(df.sort_values(['eigenvalue'])['module'],threshold=offset)
         p=p_[0]
+        
         right_thresholds=p_[1]['right_thresholds']
         left_thresholds=p_[1]['left_thresholds']
         
@@ -191,10 +195,9 @@ def __peaks_extraction(df,len_input_matrix,n_shots):
                 peaks.append(el['lambda'])
     
     #mean_threshold helps in showing which are the eigenvalue that we are not able to estimate in a right way. If the phase estimation is not able to extract an eigenvalue in a correct way, this eigenvalue will have the lowest mean_threshold value
-    
     mean_threshold=(left_thresholds+right_thresholds)/2
     sorted_peaks=np.array(peaks)[mean_threshold.argsort()[::-1]]
     sorted_num_peaks=np.array(nums_peaks)[mean_threshold.argsort()[::-1]]
-    
+
     return sorted_peaks,sorted_num_peaks,np.array(sorted(mean_threshold,reverse=True))
     
