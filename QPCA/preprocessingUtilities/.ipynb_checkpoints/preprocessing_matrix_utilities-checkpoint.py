@@ -2,7 +2,8 @@ import numpy as np
 import itertools
 import warnings
 import math
-
+from numpyarray_to_latex.jupyter import to_jup
+from numpyarray_to_latex import to_ltx
 
 def generate_matrix(matrix_dimension,eigenvalues_list=None,replicate_paper=True,seed=None):
         
@@ -57,9 +58,12 @@ def generate_matrix(matrix_dimension,eigenvalues_list=None,replicate_paper=True,
                 input_matrix = np.array([[0, 0, 0, 0], [0, 1, 0, 0], [0, 0, 2, 0], [0, 0, 0, 3]])
             else:
                 raise Exception('Only matrix 2x2 or 4x4 are allowed to replicate the reference paper')
-
-        print(f'Matrix:\n {input_matrix.round(2)}\n')
+        
+        print(f'Matrix:\n')
+        to_jup(input_matrix)
+        
         for eigenval, eigenvec in zip(np.linalg.eig(input_matrix)[0][::-1], np.rot90(np.linalg.eig(input_matrix)[1])):
+            
             print(f'eigenvalue: {eigenval} - eigenvector: {eigenvec.round(3)}')
 
         return input_matrix
