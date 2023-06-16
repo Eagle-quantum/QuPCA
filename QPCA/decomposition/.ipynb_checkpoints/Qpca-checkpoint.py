@@ -198,7 +198,7 @@ class QPCA():
         return self
 
 
-    def eigenvectors_reconstruction(self,n_shots=50000,n_repetitions=1,plot_peaks=False, eigenvalue_threshold=None, abs_tolerance=None):
+    def eigenvectors_reconstruction(self,n_shots=50000,n_repetitions=1,plot_peaks=False, eigenvalue_threshold=None, abs_tolerance=None, backend=None):
         
         """ Method that reconstructs the eigenvalues/eigenvectors once performed Phase Estimation. 
 
@@ -220,6 +220,9 @@ class QPCA():
         abs_tolerance: float value, default=None
                         Absolute tolerance parameter used to cut out the eigenvalues estimated badly due to insufficient resolution.
         
+        backend: Qiskit backend, default value=None
+                    The Qiskit backend used to execute the circuit. If None, the qasm simulator is used by default.
+        
         Returns
         ----------
         eigenvalue_eigenvector_tuple: array-like. 
@@ -231,7 +234,7 @@ class QPCA():
         way, the statevector of the quantum state is reconstructed and a postprocessing method is executed to get the eigenvectors from the reconstructed statevector.
         """
         
-        def wrapper_state_vector_tomography(quantum_circuit,n_shots):
+        def wrapper_state_vector_tomography(quantum_circuit,n_shots, backend):
             
             assert n_repetitions>0, "n_repetitions must be greater than 0."
             self.n_shots=n_shots
@@ -242,7 +245,7 @@ class QPCA():
                 tomo_dict=state_vector_tomography(quantum_circuit,n_shots)
                 statevector_dictionary=tomo_dict
             else:
-                tomo_dict=[state_vector_tomography(quantum_circuit,n_shots) for j in range(n_repetitions)]
+                tomo_dict=[state_vector_tomography(quantum_circuit,n_shots,backend=backend) for j in range(n_repetitions)]
                 keys=list(tomo_dict[0].keys())
                 new_tomo_dict={}
                 for k in keys:
@@ -255,7 +258,7 @@ class QPCA():
 
             return statevector_dictionary
         
-        statevector_dictionary=wrapper_state_vector_tomography(quantum_circuit=self.total_circuit,n_shots=n_shots)
+        statevector_dictionary=wrapper_state_vector_tomography(quantum_circuit=self.total_circuit,n_shots=n_shots, backend=backend)
         eigenvalue_eigenvector_tuple, mean_threshold=general_postprocessing(input_matrix=self.input_matrix,statevector_dictionary=statevector_dictionary,
                                                                            resolution=self.resolution,n_shots=self.n_shots,plot_peaks=plot_peaks,
                                                                            eigenvalue_threshold=eigenvalue_threshold,abs_tolerance=abs_tolerance)
