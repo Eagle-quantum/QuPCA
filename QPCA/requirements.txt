@@ -5,6 +5,7 @@
 matplotlib>=3.8,<4
 numpy>=1.24,<3
 pandas>=1.5,<3
+pylatexenc>=2.10,<3
 qiskit>=1.4.2,<2.0.0
 qiskit-aer>=0.15,<1.0
 qiskit-experiments>=0.8,<1.0

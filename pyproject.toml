@@ -41,6 +41,7 @@ docs = [
 ]
 notebooks = [
   "jupyter>=1,<2",
+  "pylatexenc>=2.10,<3",
   "qiskit-experiments>=0.8,<1.0",
   "seaborn>=0.13,<1",
 ]
