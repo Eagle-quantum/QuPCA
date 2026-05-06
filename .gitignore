@@ -16,7 +16,6 @@ dist/
 
 # Sphinx builds
 docs/_build/
-QPCA/docs1/_build/
 
 # Local environments
 .venv/

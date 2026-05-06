@@ -78,8 +78,8 @@ Start here if you want to understand the repository quickly:
 
 ## Documentation
 
-- Sphinx source lives in [QPCA/docs1](QPCA/docs1).
-- A built HTML snapshot is currently committed under [QPCA/docs1/_build/html](QPCA/docs1/_build/html).
+- Sphinx source lives in [docs](docs).
+- A built HTML snapshot is currently committed under [docs/_build/html](docs/_build/html).
 
 ## Installation Notes
 

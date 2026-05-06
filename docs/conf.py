@@ -4,7 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -27,3 +27,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme =  'sphinx_rtd_theme'#'alabaster'
 html_static_path = ['_static']
+html_theme_options = {
+    'prev_next_buttons_location': None,
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+}
