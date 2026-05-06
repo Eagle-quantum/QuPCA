@@ -20,8 +20,7 @@ python -m pip install -e .[notebooks]
 Minimal example:
 
 ```python
-from QPCA.decomposition import QPCA
-from QPCA.preprocessingUtilities.preprocessing import generate_matrix
+from QPCA import QPCA, generate_matrix
 
 input_matrix = generate_matrix(
 	matrix_dimension=4,
@@ -47,10 +46,10 @@ Additional details are documented in [SECURITY.md](SECURITY.md).
 Start here if you want to understand the repository quickly:
 
 1. [QPCA](QPCA) contains the reusable Python package.
-2. [class_usability.ipynb](class_usability.ipynb) is the most direct package-oriented notebook.
-3. [end-to-end.ipynb](end-to-end.ipynb) shows the full custom workflow from preprocessing to reconstruction.
-4. [Benchmark.ipynb](Benchmark.ipynb) and [Benchmark-CSV_Primitives.ipynb](Benchmark-CSV_Primitives.ipynb) cover benchmark workflows.
-5. [real_hw_experiments_primitives.ipynb](real_hw_experiments_primitives.ipynb) focuses on hardware-oriented experiments.
+2. [notebooks/README.md](notebooks/README.md) is the curated notebook index.
+3. [notebooks/tutorials/class_usability.ipynb](notebooks/tutorials/class_usability.ipynb) is the most direct package-oriented notebook.
+4. [notebooks/tutorials/end-to-end.ipynb](notebooks/tutorials/end-to-end.ipynb) shows the full custom workflow from preprocessing to reconstruction.
+5. [notebooks/benchmarks/Benchmark.ipynb](notebooks/benchmarks/Benchmark.ipynb) and [notebooks/benchmarks/Benchmark-CSV_Primitives.ipynb](notebooks/benchmarks/Benchmark-CSV_Primitives.ipynb) cover benchmark workflows.
 
 ### Core Package
 
@@ -62,13 +61,12 @@ Start here if you want to understand the repository quickly:
 
 ### Notebooks
 
-- [class_usability.ipynb](class_usability.ipynb): package-first usage examples and tomography demonstrations.
-- [end-to-end.ipynb](end-to-end.ipynb): detailed custom implementation walkthrough.
-- [preprocessing_pe_tomography.ipynb](preprocessing_pe_tomography.ipynb) and [preprocessing_pe_tomography_reconstruction.ipynb](preprocessing_pe_tomography_reconstruction.ipynb): step-by-step reconstruction notebooks.
-- [resolution_choices_example.ipynb](resolution_choices_example.ipynb): effect of phase-estimation resolution.
-- [Benchmark.ipynb](Benchmark.ipynb) and [Benchmark-CSV_Primitives.ipynb](Benchmark-CSV_Primitives.ipynb): benchmark-oriented workflows.
-- [real_hw_experiments_primitives.ipynb](real_hw_experiments_primitives.ipynb): runtime and hardware execution experiments.
-- [new_tomography.ipynb](new_tomography.ipynb), [initial_tests.ipynb](initial_tests.ipynb), and [thetas_computation.ipynb](thetas_computation.ipynb): exploratory historical notebooks.
+- [notebooks/tutorials](notebooks/tutorials): curated walkthroughs and package-oriented examples.
+- [notebooks/benchmarks](notebooks/benchmarks): benchmark and runtime evaluation workflows.
+- [notebooks/explorations](notebooks/explorations): exploratory historical notebooks kept for reference.
+- [notebooks/README.md](notebooks/README.md): notebook index, support level, and execution guidance.
+
+All notebooks live under [notebooks](notebooks). They include a small bootstrap cell so imports continue to work when you open them from the new subfolders, but installing the package in editable mode is still the recommended workflow.
 
 ### Data And Results
 
@@ -80,6 +78,7 @@ Start here if you want to understand the repository quickly:
 
 - Sphinx source lives in [docs](docs).
 - A built HTML snapshot is currently committed under [docs/_build/html](docs/_build/html).
+- The notebook catalog lives in [notebooks/README.md](notebooks/README.md).
 
 ## Installation Notes
 

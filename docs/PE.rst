@@ -1,6 +1,6 @@
-Phase Estimation 
-============
+Phase Estimation
+================
 
-.. automodule:: QPCA.quantumUtilities.qPe_Builder
+.. automodule:: QPCA.quantumUtilities.phase_estimation_builder
    :members:
    :undoc-members:

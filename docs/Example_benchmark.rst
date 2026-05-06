@@ -1,5 +1,5 @@
 Example of benchmark
-====
+====================
 
 .. toctree::
    :maxdepth: 1

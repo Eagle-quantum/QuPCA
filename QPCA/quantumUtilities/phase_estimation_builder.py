@@ -1,10 +1,11 @@
-from .qpe_builder import PeCircuitBuilder
-
-__all__ = ["PeCircuitBuilder"]import numpy as np
+import numpy as np
 
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from .numpy_matrix import NumPyMatrix
 from qiskit.circuit.library import PhaseEstimation
+
+from .numpy_matrix import NumPyMatrix
+
+__all__ = ["PeCircuitBuilder"]
 
 class PeCircuitBuilder():
     

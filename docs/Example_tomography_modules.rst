@@ -1,5 +1,5 @@
 Example of state tomography usage
-====
+=================================
 
 .. toctree::
    :maxdepth: 1

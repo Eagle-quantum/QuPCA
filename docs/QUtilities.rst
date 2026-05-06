@@ -1,5 +1,5 @@
 quantumUtilities
-============
+================
 
 .. toctree::
    :maxdepth: 1

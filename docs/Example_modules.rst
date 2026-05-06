@@ -1,5 +1,5 @@
 Example of QPCA usage
-====
+=====================
 
 .. toctree::
    :maxdepth: 1

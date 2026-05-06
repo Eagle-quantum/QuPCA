@@ -7,20 +7,16 @@ Basic usage
 
 
 First, you have to import the necessary modules from the package. Then, you can generate a random Hermitian 
-matrix using the :meth:`~QPCA.preprocessingUtilities.generate_matrix` method provided in the package. You can 
+matrix using the public :meth:`~QPCA.generate_matrix` helper. You can 
 set the matrix dimension and a seed for the reproducibility of the execution.
 
 ..  code-block:: python
 
-    /**
-     * 
-     */
-      from QPCA.decomposition.Qpca import QPCA
+      from QPCA import QPCA, generate_matrix
       import numpy as np
       import matplotlib.pyplot as plt
       import random
       import pandas as pd
-      from QPCA.preprocessingUtilities.preprocessing import generate_matrix
 
       matrix_dimension=2
       seed=19
@@ -109,9 +105,9 @@ Finally, you can reconstruct the original input matrix using the :meth:`~QPCA.de
    array([[0.5884931 , 0.12919742],
          [0.12919742, 0.08054153]])
 
-+++++++++++++++
-Threshold optimization 
-+++++++++++++++
+++++++++++++++++++++++++++++++
+Threshold optimization
+++++++++++++++++++++++++++++++
 
 In the :meth:`~QPCA.decomposition.QPCA.quantum_input_matrix_reconstruction` method, you can specify the :obj:`~QPCA.decomposition.QPCA.eigenvalue_threshold` parameter to discard the estimated eigenvalues that are smaller than the specified value.
 
@@ -135,9 +131,9 @@ This type of threshold can be useful for excluding the smallest eigenvalues, whi
 Additionally, the associated eigenvectors of these small eigenvalues tend to have higher reconstruction errors. 
 By applying a threshold to remove these eigenvalues, you can potentially improve the overall quality of the eigenvector reconstruction.
 
-+++++++++++++++
-Absolute tolerance 
-+++++++++++++++
++++++++++++++++++++++++++
+Absolute tolerance
++++++++++++++++++++++++++
 
 The absolute tolerance serves as a threshold to discard noisy eigenvalues and their corresponding eigenvectors that may arise when the number of resolution qubits and/or the number of measurements performed in the tomography is insufficient.
 

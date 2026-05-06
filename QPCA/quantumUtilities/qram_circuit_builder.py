@@ -1,9 +1,10 @@
-from .qram_builder import QramBuilder
-
-__all__ = ["QramBuilder"]from ..quantumUtilities.quantum_utilities import thetas_computation, from_binary_tree_to_qcircuit
-from qiskit.circuit.library.data_preparation.state_preparation import StatePreparation
 import numpy as np
 from qiskit import QuantumCircuit
+from qiskit.circuit.library.data_preparation.state_preparation import StatePreparation
+
+from .quantum_utilities import from_binary_tree_to_qcircuit, thetas_computation
+
+__all__ = ["QramBuilder"]
 
 class QramBuilder():
     

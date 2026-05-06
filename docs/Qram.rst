@@ -1,6 +1,6 @@
 QRAM 
 ============
 
-.. automodule:: QPCA.quantumUtilities.qRam_Builder
+.. automodule:: QPCA.quantumUtilities.qram_circuit_builder
    :members:
    :undoc-members:

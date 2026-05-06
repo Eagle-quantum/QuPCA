@@ -10,9 +10,14 @@ This circuit is responsible for encoding the quantum state that you wish to reco
 ..  code-block:: python
 
    from qiskit import QuantumCircuit
-   from qiskit import Aer, transpile
+   from qiskit import transpile
    from qiskit.visualization import array_to_latex
-   from QPCA.quantumUtilities.Tomography import StateVectorTomography
+   from QPCA import StateVectorTomography
+
+   try:
+      from qiskit_aer import Aer
+   except ImportError:
+      from qiskit import Aer
 
    qc=QuantumCircuit(2)
    qc.x(0)

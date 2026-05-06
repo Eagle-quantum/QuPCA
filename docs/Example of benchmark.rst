@@ -1,7 +1,7 @@
 Example
-====
+=======
 
-In the :mod:`~QPCA.benchmark` module, there are four methods available to benchmark the execution of the Qpca algorithm. 
+In the :mod:`~QPCA.benchmark` module, there are four methods available to benchmark the execution of the QPCA algorithm. 
 Below are some examples illustrating the usage of these benchmarking methods.
 
 First, you set a seed to ensure the reproducibility of the experiments. Then, you specify a resolution of 8 qubits and define a custom list of eigenvalues for a 4x4 matrix. 
@@ -9,11 +9,9 @@ The number of measurements for the eigenvector reconstruction is set to 1.000.00
 
 .. code-block:: python
 
-   from QPCA.decomposition.Qpca import QPCA
+   from QPCA import Benchmark_Manager, QPCA, generate_matrix
    import numpy as np
    import matplotlib.pyplot as plt
-   from QPCA.preprocessingUtilities.preprocessing import generate_matrix
-   from QPCA.benchmark.benchmark import Benchmark_Manager
 
    seed=4747
    resolutions=[8]
@@ -22,7 +20,7 @@ The number of measurements for the eigenvector reconstruction is set to 1.000.00
    input_matrix=generate_matrix(matrix_dimension=matrix_dimension,replicate_paper=False,seed=seed,eigenvalues_list=eigenvalues_list)
    shots_numbers=[1000000] 
 
-Next, you create a Qpca object and fit it using the generated input matrix and the chosen resolution. Finally, you utilize the :meth:`~QPCA.decomposition.QPCA.eigenvectors_reconstruction` method to reconstruct the eigenvalues and eigenvectors. 
+Next, you create a QPCA object and fit it using the generated input matrix and the chosen resolution. Finally, you utilize the :meth:`~QPCA.decomposition.QPCA.eigenvectors_reconstruction` method to reconstruct the eigenvalues and eigenvectors. 
 In the first reference example, you are interested in evaluating the accuracy of reconstructing the eigenvectors using :meth:`~QPCA.decomposition.QPCA.spectral_benchmarking`
 
 .. code-block:: python
@@ -52,7 +50,7 @@ If the :obj:`~QPCA.benchmark.eigenvectors_reconstruction.print_error` parameter 
 .. image:: Images/benchmark2.png
 
 Eigenvectors reconstruction error benchmark
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The :meth:`~QPCA.benchmark.Benchmark_Manager.error_benchmark` method allows you to visualize the reconstruction error trend for each eigenvector as the number of measurements and resolution qubits increase. 
 Similar to before, you need to perform the fit and eigenvector reconstruction procedures after selecting the desired number of measurements and resolution qubits. 
