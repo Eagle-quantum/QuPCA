@@ -1,3 +1,5 @@
-from .decomposition import *
+from .decomposition import QPCA
+from .benchmark import Benchmark_Manager
 from .quantumUtilities import *
-__all__ = ['decomposition','quantumUtilities']
+
+__all__ = ["QPCA", "Benchmark_Manager", "decomposition", "quantumUtilities"]

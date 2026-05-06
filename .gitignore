@@ -1,0 +1,23 @@
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*.so
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS and editors
+.DS_Store
+.idea/
+.vscode/
+
+# Sphinx builds
+docs/_build/
+QPCA/docs1/_build/
+
+# Local environments
+.venv/
+venv/

@@ -1,13 +1,16 @@
 import numpy as np
 from qiskit.circuit.library.standard_gates import RYGate
-from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit.circuit.library import PhaseEstimation
-from qiskit import Aer, transpile
+from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit, transpile
 import matplotlib.pyplot as plt
 from qiskit.circuit.library.data_preparation.state_preparation import StatePreparation
 from ..warnings_utils.warning_utility import *
 from qiskit.primitives import BackendSampler
-from qiskit_ibm_runtime import Sampler, Options
+from qiskit_ibm_runtime import Sampler
+
+try:
+    from qiskit_aer import Aer
+except ImportError:  # pragma: no cover - fallback for older Qiskit environments
+    from qiskit import Aer
 
 class StateVectorTomography():
 
