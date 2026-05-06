@@ -39,7 +39,7 @@ def generate_matrix(matrix_dimension,eigenvalues_list=None,replicate_paper=True,
             random_matrix=np.random.rand(matrix_dimension, matrix_dimension) 
             hermitian_matrix=np.dot(random_matrix, random_matrix.T)
 
-            if eigenvalues_list:
+            if eigenvalues_list is not None:
                 eig, e_v = np.linalg.eig(hermitian_matrix)
                 eigenvalues_list=sorted(eigenvalues_list,reverse=True)
                 b = np.array(eigenvalues_list)
@@ -48,7 +48,7 @@ def generate_matrix(matrix_dimension,eigenvalues_list=None,replicate_paper=True,
                 input_matrix=hermitian_matrix
             
         else:
-            if eigenvalues_list:
+            if eigenvalues_list is not None:
                 warnings.warn("Attention! You want to replicate the paper results so the eigenvalues list that you passed will have no effect!")
             if matrix_dimension==2:
                 input_matrix = np.array([[1.5, 0.5],[0.5, 1.5]])
